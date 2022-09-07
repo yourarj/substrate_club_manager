@@ -1,6 +1,6 @@
 use node_template_runtime::{
-	AccountId, AuraConfig, BalancesConfig, GenesisConfig, GrandpaConfig, Signature, SudoConfig,
-	SystemConfig, WASM_BINARY,
+	AccountId, AuraConfig, BalancesConfig, ClubManagerModuleConfig, GenesisConfig, GrandpaConfig,
+	Signature, SudoConfig, SystemConfig, WASM_BINARY,
 };
 use sc_service::ChainType;
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
@@ -152,5 +152,13 @@ fn testnet_genesis(
 			key: Some(root_key),
 		},
 		transaction_payment: Default::default(),
+		club_manager_module: ClubManagerModuleConfig {
+			existing_clubs: {
+				let mut membership = std::collections::HashMap::new();
+				membership.insert(0, Vec::new());
+				membership.insert(1, Vec::new());
+				membership
+			},
+		},
 	}
 }

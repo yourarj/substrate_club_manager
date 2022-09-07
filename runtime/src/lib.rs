@@ -268,6 +268,7 @@ impl pallet_sudo::Config for Runtime {
 /// Configure the pallet-club-manager in pallets/club-manager.
 impl pallet_club_manager::Config for Runtime {
 	type Event = Event;
+	type ClubId = u32;
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.

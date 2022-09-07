@@ -51,6 +51,7 @@ impl system::Config for Test {
 
 impl pallet_club_manager::Config for Test {
 	type Event = Event;
+	type ClubId = u32;
 }
 
 // Build genesis storage according to the mock runtime.
