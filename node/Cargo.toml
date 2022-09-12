@@ -17,39 +17,69 @@ targets = ["x86_64-unknown-linux-gnu"]
 name = "node-template"
 
 [dependencies]
+# Command Line Argument Parser
 clap = { version = "3.1.18", features = ["derive"] }
-
+# Substrate CLI interface.
 sc-cli = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", features = ["wasmtime"] , branch = "polkadot-v0.9.28" }
+# Shareable Substrate types.
 sp-core = { version = "6.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# provides means of executing/dispatching calls into the runtime
 sc-executor = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", features = ["wasmtime"] , branch = "polkadot-v0.9.28" }
+# Substrate service. Starts a thread that spins up the network, client, and extrinsic pool. Manages communication between them.
 sc-service = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", features = ["wasmtime"] , branch = "polkadot-v0.9.28" }
+# Telemetry utils
 sc-telemetry = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# keystore for ed25519 based chains
 sc-keystore = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Substrate transaction pool implementation 
 sc-transaction-pool = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Transaction pool client facing API.
 sc-transaction-pool-api = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Aura (Authority-round) consensus in substrate
 sc-consensus-aura = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Primitives for Aura
 sp-consensus-aura = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Common utilities for building and using consensus engines in substrate
 sp-consensus = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Collection of common consensus specific implementations
 sc-consensus = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Integration of the GRANDPA finality gadget into substrate
 sc-finality-grandpa = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Primitives for GRANDPA integration, suitable for WASM compilation
 sp-finality-grandpa = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Substrate client interfaces
 sc-client-api = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Runtime Modules shared primitive types
 sp-runtime = { version = "6.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Substrate core types and inherents for timestamps
 sp-timestamp = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Substrate Inherent Extrinsics
 sp-inherents = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Support code for the runtime. A set of test accounts.
 sp-keyring = { version = "6.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# the base layer for other pallets to interact with the Substrate framework components.
 frame-system = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# basic logic needed to pay the absolute minimum amount needed for a transaction to be included
 pallet-transaction-payment = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
 
 # These dependencies are used for the node template's RPCs
+# JSON RPC
 jsonrpsee = { version = "0.15.1", features = ["server"] }
+# Substrate RPC implementation
 sc-rpc = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Substrate runtime api
 sp-api = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Substrate RPC interfaces
 sc-rpc-api = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Substrate blockchain traits and primitives
 sp-blockchain = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# The block builder runtime api
 sp-block-builder = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# Basic implementation of block-authoring logic
 sc-basic-authorship = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# System FRAME specific RPC methods.
 substrate-frame-rpc-system = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
+# RPC interface for the transaction payment pallet.
 pallet-transaction-payment-rpc = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.28" }
 
 # These dependencies are used for runtime benchmarking
