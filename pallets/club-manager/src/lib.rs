@@ -14,6 +14,9 @@ mod tests;
 #[cfg(feature = "runtime-benchmarks")]
 mod benchmarking;
 
+pub mod weights;
+pub use weights::*;
+
 #[frame_support::pallet]
 pub mod pallet {
 
@@ -24,6 +27,8 @@ pub mod pallet {
 	};
 	use frame_system::pallet_prelude::*;
 	use sp_runtime::{app_crypto::MaybeHash, traits::AtLeast32BitUnsigned};
+
+	use crate::WeightInfo;
 
 	#[pallet::pallet]
 	#[pallet::generate_store(pub(super) trait Store)]
@@ -44,6 +49,9 @@ pub mod pallet {
 			+ Default
 			+ MaybeSerializeDeserialize
 			+ MaybeHash;
+
+		/// Type representing the weight of this pallet
+		type WeightInfo: WeightInfo;
 	}
 
 	#[pallet::storage]
@@ -108,7 +116,7 @@ pub mod pallet {
 		/// Adds a new member (account) to the given club. Can only be called by `root`.
 		/// Throws a `DuplicateMember` error, if the member was already in the club.
 		/// Emits an event on success.
-		#[pallet::weight(324 + T::DbWeight::get().reads_writes(2, 1))]
+		#[pallet::weight(T::WeightInfo::member_on_board(1_u32))]
 		pub fn member_on_board(
 			origin: OriginFor<T>,
 			club_id: T::ClubId,
@@ -129,7 +137,7 @@ pub mod pallet {
 
 		/// Removes the given member (account) from the club if existed, otherwise throws an error.
 		/// Can only be called by `root`. Emits an event on success.
-		#[pallet::weight(174 + T::DbWeight::get().reads_writes(2, 1))]
+		#[pallet::weight(T::WeightInfo::member_off_board(1_u32))]
 		pub fn member_off_board(
 			origin: OriginFor<T>,
 			club_id: T::ClubId,

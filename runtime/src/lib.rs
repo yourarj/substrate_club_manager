@@ -269,6 +269,7 @@ impl pallet_sudo::Config for Runtime {
 impl pallet_club_manager::Config for Runtime {
 	type Event = Event;
 	type ClubId = u32;
+	type WeightInfo = ();
 }
 
 // Create the runtime by composing the FRAME pallets that were previously configured.
